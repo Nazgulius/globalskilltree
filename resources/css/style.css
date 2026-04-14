@@ -1,0 +1,512 @@
+/*  author Chalykh Maksim 
+  # data 25.01.2025 
+  # email: chalyh.maksim.88@mail.ru */
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* background-color: #e4e4e7; */
+  background-color: rgba(230, 230, 230, 0.8);
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.centre {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title-select {
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.class-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.class-list-item {
+  width: 300px;
+  height: 150px;
+  margin-right: 10px;
+  margin-bottom: 10px;  
+}
+
+/* классы сидячие при бездействии */
+.button-select-mage-img {
+  background-image: url(../img/mage_class_h_sits.png);
+}
+
+.button-select-sage-img {
+  background-image: url(../img/mage_class_h2_sits.png);
+}
+
+.button-select-merchant-alchemist-img {
+  background-image: url(../img/merchant_class_h1_sits.png);
+}
+
+.button-select-merchant-blacksmith-img {
+  background-image: url(../img/merchant_class_h2_sits.png);
+}
+
+.button-select-acolyte-priest-img {
+  background-image: url(../img/acolyte_class_h1_sits.png);
+}
+
+.button-select-acolyte-monk-img {
+  background-image: url(../img/acolyte_class_h2_sits.png);
+}
+
+.button-select-swordman-crusader-img {
+  background-image: url(../img/swordman_class_h1_sits.png);
+}
+
+.button-select-swordman-knight-img {
+  background-image: url(../img/swordman_class_h2_sits.png);
+}
+
+.button-select-thief-assassin-img {
+  background-image: url(../img/thief_class_h1_sits.png);
+}
+
+.button-select-thief-rogue-img {
+  background-image: url(../img/thief_class_h2_sits.png);
+}
+
+.button-select-archer-hunter-img {
+  background-image: url(../img/archer_class_h1_sits.png);
+}
+
+.button-select-archer-bard-img {
+  background-image: url(../img/archer_class_h2_sits.png);
+}
+
+.button-select-archer-dancer-img {
+  background-image: url(../img/archer_class_h3_sits.png);
+}
+
+/* классы стоячие при выборе, фокусе */
+.button-select-mage-img:hover {
+  background-image: url(../img/mage_class_h.png);
+}
+
+.button-select-sage-img:hover {
+  background-image: url(../img/mage_class_h2.png);
+}
+
+.button-select-merchant-alchemist-img:hover {
+  background-image: url(../img/merchant_class_h1.png);
+}
+
+.button-select-merchant-blacksmith-img:hover {
+  background-image: url(../img/merchant_class_h2.png);
+}
+
+.button-select-acolyte-priest-img:hover {
+  background-image: url(../img/acolyte_class_h1.png);
+}
+
+.button-select-acolyte-monk-img:hover {
+  background-image: url(../img/acolyte_class_h2.png);
+}
+
+.button-select-swordman-crusader-img:hover {
+  background-image: url(../img/swordman_class_h1.png);
+}
+
+.button-select-swordman-knight-img:hover {
+  background-image: url(../img/swordman_class_h2.png);
+}
+
+.button-select-thief-assassin-img:hover {
+  background-image: url(../img/thief_class_h1.png);
+}
+
+.button-select-thief-rogue-img:hover {
+  background-image: url(../img/thief_class_h2.png);
+}
+
+.button-select-archer-hunter-img:hover {
+  background-image: url(../img/archer_class_h1.png);
+}
+
+.button-select-archer-bard-img:hover {
+  background-image: url(../img/archer_class_h2.png);
+}
+
+.button-select-archer-dancer-img:hover {
+  background-image: url(../img/archer_class_h3.png);
+}
+
+
+
+.button-select-img {
+  width: 300px;
+  height: 150px;  
+  background-color: rgb(255, 255, 255);
+  /* border: solid 1px; */
+  box-shadow: 4px 3px 3px 3px gray;
+}
+
+.btn-in-img {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 22px;
+  color: #0095b6;
+  font-weight: bold;
+}
+
+.button-select-img:hover {
+  background-color: #bab7e2;
+}
+
+.job-tree {
+  display: flex;
+  flex-direction: row;  
+  width: 780px;
+  background-color: #5b719f;
+  color: #fff;
+  border: solid 1px;
+  background-repeat: no-repeat;
+  padding: 5px;
+  font-family: sans-serif;
+}
+
+.panel-statistic-job-one {
+  margin-bottom: 10px;
+}
+
+.panel-statistic-job-two {
+  margin-bottom: 10px;
+}
+
+.panel-statistic-job-two-hight {
+  margin-bottom: 10px;
+}
+
+
+.skill {
+  display: flex;
+  white-space: nowrap;
+  width: 250px;
+  height: 40px;
+  background-color: yellow;
+  border: solid 1px;
+  margin-bottom: 2px;
+  color: #000;
+  font-family: sans-serif;
+}
+
+.job-one {
+  width: 254px;
+}
+
+.job-two {
+  width: 254px;
+}
+
+.job-two-hight {
+  width: 254px;
+}
+
+.job-name {
+  text-align: center;
+  margin-right: 10px;
+}  
+
+.skill-img {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  box-sizing: border-box; 
+  transition: 0.2s;
+}
+
+.skill-img:hover {
+  transform:translateY(-2px);
+  box-shadow: 0 2px 0 rgb(192, 192, 192);    
+}
+
+.skill-img:active {
+  transform:translateY(-1px);
+  box-shadow: 0 1px 0 rgb(158, 158, 158);    
+}
+
+.skill-block {
+  width: 210px;
+  height: 40px;
+}
+
+.skill-name-block {
+  display: flex;
+  height: 20px;
+  background-color: white;
+}
+
+.skill-name {
+  flex: auto;
+  text-align: center;
+  margin: 2px 0 2px 0;
+  padding: 0;
+}
+
+.skill-progress {
+  display: flex;
+  justify-content: space-between;
+  height: 20px;
+  text-align: center;
+  background-color: #add8e6;
+}
+
+
+
+@media (max-width: 699px) { 
+  .job-tree {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+  }
+
+  .panel-statistic {
+    max-width: 360px;    
+  }
+
+  
+
+  .job-one {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+  
+  .job-two {
+    width: 300px;
+  }
+  
+  .job-two-hight {
+    width: 300px;
+  }
+
+  .skill {
+    width: 300px;
+  }
+
+  .skill-block {
+    width: 260px;
+  }  
+}
+
+  .line {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dot {  
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    /* transition: all 0.2s ease; */
+    margin: 3px 2px 2px;
+    /* background: linear-gradient(140deg, #002fff 60%, #d8d8d8 80%); */
+    background: radial-gradient(closest-side, #ffffff, gray);
+    color: white; /* цвет текста */
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* для ссылок */
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .dot:hover {
+    /* background-color: rgb(81, 81, 252); */
+    /* background-color: rgb(0, 0, 255); */
+    /* transform:translateY(-2px);  */
+    /* box-shadow: 0 3px 0 darkblue;  */
+
+    /* background-color: #388E3C;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); */
+
+    transform: scale(1.3);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+    background: radial-gradient(closest-side, #5b6bfc, #002fff);
+  }
+
+  .dot:active {
+    /* background-color: rgb(81, 81, 252);
+    transform:translateY(-1px);
+    box-shadow: 0 2px 0 darkblue;     */
+
+    /* transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+
+    transform: scale(0.98);
+    background: radial-gradient(closest-side, #002fff, #002fff);
+  }
+  
+  .dot-reset {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, #ffdcdc, #ff0000 60%);
+    margin: 2px 2px 0 0;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+  }
+
+  .dot-reset:hover {
+    background: radial-gradient(closest-side, #f87777, #ff0000 60%);
+    transform: scale(1.3);
+    /* box-shadow: 0 3px 0 darkred; */
+  }
+
+  .dot-reset:active {
+    background: radial-gradient(closest-side, #ff0000, #ff0000 );
+    transform: scale(0.98);
+    /* box-shadow: 0 2px 0 darkred; */
+  }
+
+  .hidden {
+    /* background-color: blue; */
+    background: radial-gradient(closest-side, #5b6bfc, #002fff);
+  }
+
+  .header {
+    border-radius: 30px;    
+    margin: 5px 22%;
+    padding: 5px 2% 5px 2%;
+    background: #e6e7e8; /*Запасной однотонный цвет для очень старых браузеров */
+    background: -webkit-linear-gradient(top, #e6e7e8, #d1d2d3); /* Для старых WebKit (Safari ≤5.1, Chrome ≤25) */
+    background: -moz-linear-gradient(top, #e6e7e8, #d1d2d3); /* Для старых Firefox (≤3.6) */
+    background: -o-linear-gradient(top, #e6e7e8, #d1d2d3); /* Для старых Opera (≤12) */
+    background: linear-gradient(to bottom, #e6e7e8, #d1d2d3); /* Стандартный синтаксис (все современные браузеры) */
+ 
+  }
+
+  @media (max-width: 1155px) {
+    .header {
+      margin: 0 10%;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .header {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .panel-statistic {
+    display: flex;
+    width: 710px;
+    align-items: center;
+    /* border: solid 1px; */
+    margin-bottom: 10px;
+    padding-left: 2%;
+
+    border-radius: 30px;    
+    margin: 5px auto;
+    background: #e6e7e8; /*Запасной однотонный цвет для очень старых браузеров */
+    background: -webkit-linear-gradient(top, #e6e7e8, #d1d2d3); /* Для старых WebKit (Safari ≤5.1, Chrome ≤25) */
+    background: -moz-linear-gradient(top, #e6e7e8, #d1d2d3); /* Для старых Firefox (≤3.6) */
+    background: -o-linear-gradient(top, #e6e7e8, #d1d2d3); /* Для старых Opera (≤12) */
+    background: linear-gradient(to bottom, #e6e7e8, #d1d2d3); /* Стандартный синтаксис (все современные браузеры) */
+  }
+
+  .bnt-reset {
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: lightcoral;
+    border-radius: 20px;    
+    outline: none;
+    transform: 0.2s;
+  }
+
+  .bnt-reset:hover {
+    background-color: lightcoral;
+    transform:translateY(-2px);
+    box-shadow: 0 3px 0 #CF524E;
+  }
+
+  .bnt-reset:active {
+    transform:translateY(-1px);
+    box-shadow: 0 2px 0 #CF524E;
+  }
+
+  .btn-home {
+    cursor: pointer;
+    border-radius: 20px;    
+    outline: none;
+    transform: 0.2s;
+  }
+
+  .bnt-home:hover {
+    background-color: darkgray;
+    transform:translateY(-2px);
+    box-shadow: 0 2px 0 gray;
+  }
+
+  .bnt-home:active {
+    transform:translateY(-1px);
+    box-shadow: 0 1px 0 gray;
+  }
+
+  .statistic-text {
+    margin-right: 5px;
+  }
+
+  .statistic-text-head {
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #fff;
+    color: #555555;
+  }
+
+  
+
+  .red {
+    background-color: red;  
+  }
+
+
+.ePopDiv {
+  max-width: 600px;
+  width: auto;
+  height: auto;
+  border: solid #000000 3px;
+  background-color: rgb(250, 248, 229);  
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 3px;
+
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0px;
+
+  /* Скрывает переполнение текста   */
+  overflow: hidden; 
+  /* Переносит длинные слова на следующую строку */  
+  word-wrap: break-word; 
+  /* Позволяет перенос строк и сохраняет нужные переносы */    
+  white-space: pre-wrap; 
+}
+
+
+/*  author Chalykh Maksim 
+  # data 25.01.2025 
+  # email: chalyh.maksim.88@mail.ru */
