@@ -5,6 +5,7 @@
 p {
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 body {
@@ -17,9 +18,19 @@ a {
   text-decoration: none;
 }
 
+h1, h2 {
+  text-align: center;
+}
+
 .centre {
   margin-left: auto;
   margin-right: auto;
+}
+
+.navi-list {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
 }
 
 .title-select {
@@ -28,7 +39,7 @@ a {
   text-shadow: 1px 1px 1px #fff;
 }
 
-.class-list {
+.class-list, .build-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
