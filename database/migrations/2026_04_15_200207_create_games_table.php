@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('name game');
-            $table->string('name server');
-            $table->string('link server');
-            $table->integer('max lvl');
+            $table->string('name_game');
+            $table->string('name_server');
+            $table->string('link_server');
+            $table->integer('max_lvl');
             $table->string('description');
             $table->timestamps();
         });

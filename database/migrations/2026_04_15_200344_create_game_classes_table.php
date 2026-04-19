@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('game_classes', function (Blueprint $table) {
             $table->id();
-            $table->string('name class');
-            $table->integer('skill point');
+            $table->string('name_class');
+            $table->integer('skill_point');
             $table->string('description');
             $table->string('img');
             $table->timestamps();

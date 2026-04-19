@@ -21,11 +21,14 @@
     <hr>
     <ul class="navi-list">
       @foreach ($games as $game)
-      <li class="navi-list-item"><a href="#" class="">{{ $game->name }}</a></li>
+        @if ($game->name_game === 'Ragnarok Online')
+          <li class="navi-list-item"><a href="{{ route('selectServersRO') }}" class="">{{ $game->name_game }}</a></li>
+        @else
+          <li class="navi-list-item"><a href="#" class="">{{ $game->name_game }}</a></li>
+        @endif
       @endforeach
-      <li class="navi-list-item"><a href="{{ route('selectServersRO') }}" class="">Ragnarok Online</a></li>
-      <li class="navi-list-item"><a href="#" class="">Name Game</a></li>
-      <li class="navi-list-item"><a href="#" class="">Name Game</a></li>
+      <!-- <li class="navi-list-item"><a href="{{ route('selectServersRO') }}" class="">2 Ragnarok Online</a></li> -->
+      <li class="navi-list-item"><a href="{{ route('newGame') }}" class="">Name Game</a></li>
       <li class="navi-list-item"><a href="{{ route('home') }}" class="">Home</a></li>
     </ul>
     
