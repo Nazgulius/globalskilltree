@@ -14,7 +14,6 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   
 </head>
-
 <body>
   <header class="header">
     <h1 class="title-select">Калькулятор умений - Skill Calculator</h1>
@@ -31,18 +30,14 @@
       <li class="navi-list-item"><a href="{{ route('newGame') }}" class="">Name Game</a></li>
       <li class="navi-list-item"><a href="{{ route('home') }}" class="">Home</a></li>
     </ul>
-    
-   
-  </header>
+  </header> 
 
-  @yield('content')
+  <main>
+    @yield('content')
+  </main>
 
-  <p>Server <a href="https://mythofyggdrasil.com/" class="title-select">mythofyggdrasil.com</a></p>
-  <p>Server <a href="https://scrolls.mythofyggdrasil.net/docs/intro" class="title-select"><s>wiki<s></a></p>
-  <hr>
-  <article>
-    @include('layouts.bottom')
-  </article>
+  <footer class="footer">    
+    @include('layouts.footer')    
+  </footer>
 </body>
-
 </html>
