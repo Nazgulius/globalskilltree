@@ -11,18 +11,20 @@ Route::get('/', function () {
   return view('home', ['games' => $games]);
 })->name('home');
 
-Route::view('/selectServersRO', 'game.selectServersRO', [
+Route::view('/buildListPage', 'buildListPage', [
   'games' => DB::table('games')->get()
-])->name('selectServersRO');
+])->name('buildListPage');
 
 Route::view('/newGame', 'layouts.newGame', [
   'games' => DB::table('games')->get()
 ])->name('newGame');
 
-Route::view('selectServersRO/calcMoY', '/game/calcMoY')->name('calcMoY');
-Route::view('selectServersRO/calcMOTR', '/game/calcMOTR')->name('calcMOTR');
-Route::view('selectServersRO/calcMuh', '/game/calcMuh')->name('calcMuh');
-Route::view('selectServersRO/calcPrime', '/game/calcPrime')->name('calcPrime');
 
-Route::view('selectServersRO/calcMoY/acolyteMonk', 'html/acolyteMonk')->name('acolyteMonk');
-Route::view('selectServersRO/calcMoY/acolytePriest', 'html/acolytePriest')->name('acolytePriest');
+
+Route::view('buildListPage/calcMoY', '/game/calcMoY')->name('calcMoY');
+Route::view('buildListPage/calcMOTR', '/game/calcMOTR')->name('calcMOTR');
+Route::view('buildListPage/calcMuh', '/game/calcMuh')->name('calcMuh');
+Route::view('buildListPage/calcPrime', '/game/calcPrime')->name('calcPrime');
+
+Route::view('buildListPage/calcMoY/acolyteMonk', 'html/acolyteMonk')->name('acolyteMonk');
+Route::view('buildListPage/calcMoY/acolytePriest', 'html/acolytePriest')->name('acolytePriest');
