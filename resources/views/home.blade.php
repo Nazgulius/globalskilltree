@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="petal-container">
   <h1 class="home-title">Добро пожаловать в калькулятор умений. Выберите игру, которая вас интересует.</h1>
 
   <div class="container">
@@ -28,7 +29,17 @@
    
     
   </div>
- 
+
+  <div class="toggle-container">
+    <span class="toggle-label">Лепестки роз:</span>
+    <label class="switch">
+        <input type="checkbox" id="petalToggle" checked>
+        <span class="slider"></span>
+    </label>
+  </div>
+</div>
+  
+  
 @endsection
 
 

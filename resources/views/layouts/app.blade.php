@@ -23,10 +23,12 @@
       <li class="navi-list-item"><a href="{{ route('buildListPage') }}" class="">Ragnarok Online 2</a></li>
       <li class="navi-list-item"><a href="{{ route('buildListPage') }}" class="">Ragnarok Online 3</a></li>
       <li class="navi-list-item"><a href="{{ route('newGame') }}" class="">Name Game</a></li>
+      <li class="navi-list-item"><a href="{{ route('createBuild') }}" class="">Создать билд</a></li>
       <li class="navi-list-item"><a href="{{ route('home') }}" class="">      
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Baseline Home SVG Icon</title><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z"></path></svg>
       </a></li>
     </ul>
+        
   </header> 
 
   <main>

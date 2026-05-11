@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_classes', function (Blueprint $table) {
+        Schema::create('builds', function (Blueprint $table) {
             $table->id();
-            $table->string('name_class');
-            $table->integer('skill_point');
-            $table->float('rang');
-            $table->string('species'); // раса
-            $table->string('description');
+            $table->string('title'); 
+            $table->text('description');
+            $table->json('skills')->nullable(); 
+            $table->json('items')->nullable(); 
+            $table->json('characteristics')->nullable(); 
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
-
-            $table->index('name_class');
-            $table->index('species');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_classes');
+        Schema::dropIfExists('builds');
     }
 };

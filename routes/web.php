@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\BuildController;
+
 
 // Route::get('/', function () {
 //     return view('home');
@@ -19,6 +21,9 @@ Route::view('/newGame', 'layouts.newGame', [
   'games' => DB::table('games')->get()
 ])->name('newGame');
 
+Route::view('/createBuild', 'createBuild')->name('createBuild');
+
+Route::get('/createBuild/index', [BuildController::class, 'index'])->name('createBuildIndex');
 
 
 Route::view('buildListPage/calcMoY', '/game/calcMoY')->name('calcMoY');

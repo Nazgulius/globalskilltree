@@ -1,4 +1,6 @@
 import './bootstrap';
+import './petals.js'; // падающие лепестки
+import './createBuild.js'; // создание билда
 
 import App from './logic';
 // Mage
