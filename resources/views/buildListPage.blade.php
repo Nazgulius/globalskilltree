@@ -93,14 +93,8 @@
           <h4 class="build-title">Название билда</h4>
           <p class="build-author">By <a href="#" class="author-build-link">Автор билда</a></p>
           <p class="build-date-update">Последнее обновление (дата)</p>
-        </div>
+        </div>       
         
-        <div class="build-skills-img">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-        </div>
       </div>
 
       <div class="build-down">

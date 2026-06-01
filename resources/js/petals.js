@@ -86,11 +86,22 @@ class Petal {
           rotateZ(${this.rotationZ}deg)
       `;
   
-      // Если лепесток ушёл за нижний край — возвращаем наверх
-      if (this.y > window.innerHeight + 50) {
+      // Проверяем границы контейнера: если лепесток ушёл за нижний край или за боковые границы — удаляем его
+      const containerRect = this.container.getBoundingClientRect();
+      const petalBottom = this.y + this.height;
+      const petalRight = this.x + this.width;
+      const petalLeft = this.x;
+
+      if (
+          petalBottom > containerRect.height || // ниже нижней границы контейнера
+          petalRight < 0 || // левее левой границы
+          petalLeft > containerRect.width // правее правой границы
+      ) {
           this.reset();
+          return;
       }
     }
+    
 
     reset() {
         this.x = Math.random() * window.innerWidth;

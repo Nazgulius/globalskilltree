@@ -7,21 +7,21 @@
   <div class="container">
     <div class="container-element">
       <a href="{{ route('buildListPage') }}" class="cont-elem-a">
-        <div class="cont-elem-img ro1 " alt="Ragnarok Online 1">
+        <div class="cont-elem-img" data-game="ro1" alt="Ragnarok Online 1">
           
         </div>
       </a>
     </div>
     <div class="container-element">
       <a href="{{ route('buildListPage') }}" class="cont-elem-a">
-        <div class="cont-elem-img ro2 " alt="Ragnarok Online 2">
+        <div class="cont-elem-img" data-game="ro2" alt="Ragnarok Online 2">
          
         </div>
       </a>
     </div>
     <div class="container-element">
       <a href="{{ route('buildListPage') }}" class="cont-elem-a">
-        <div class="cont-elem-img ro3 " alt="Ragnarok Online 3">
+        <div class="cont-elem-img" data-game="ro3" alt="Ragnarok Online 3">
           
         </div>
       </a>

@@ -13,13 +13,18 @@ return new class extends Migration
     {
         Schema::create('builds', function (Blueprint $table) {
             $table->id();
-            $table->string('title'); 
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('name'); 
+            $table->string('class');
             $table->text('description');
             $table->json('skills')->nullable(); 
             $table->json('items')->nullable(); 
             $table->json('characteristics')->nullable(); 
             $table->boolean('is_published')->default(false);
             $table->timestamps();
+
+            $table->index('user_id');
+            $table->index('is_published');
         });
     }
 

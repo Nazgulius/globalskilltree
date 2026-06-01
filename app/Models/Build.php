@@ -16,7 +16,9 @@ class Build extends Model
 
     // Поля, которые можно массово заполнять
     protected $fillable = [
-      'title', 
+      'user_id',
+      'name', 
+      'class',
       'description', 
       'skills', 
       'items', 
@@ -35,4 +37,12 @@ class Build extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
+
+
+
 }

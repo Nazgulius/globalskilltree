@@ -1,17 +1,15 @@
 .container {
+  height: 100%; 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
-  border: 1px solid black;
 }
 
 .container-element {
   width: 400px;
   height: 400px; 
   margin-bottom: 20px;
-  background-color: white;
- 
+  background-color: white;  
 
   border: 1px solid black; 
 }
@@ -26,18 +24,17 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
- 
+  /* Центрирование через Flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center; /* Гарантирует центрирование фонового изображения */
 }
 
-.ro1 {
-  background-image: url('/img/logo-ro1.jpg');
-}
-.ro2 {
-  background-image: url('/img/logo-ro2.png');
-}
-.ro3 {
-  background-image: url('/img/logo-ro3.jpg');
-}
+.cont-elem-img[data-game="ro1"] { background-image: url('/img/logo-ro1.jpg'); }
+.cont-elem-img[data-game="ro2"] { background-image: url('/img/logo-ro2.png'); }
+.cont-elem-img[data-game="ro3"] { background-image: url('/img/logo-ro3.jpg'); }
+
 
 .img-in-logo {
   text-align: center;
