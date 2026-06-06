@@ -40,12 +40,12 @@ Route::middleware('auth')->group(function () {
 });
 
 // маршруты для билдов
-Route::middleware('auth')->group(function () {
-  Route::get('/build/create', [BuildController::class, 'create'])->name('build.create');
-  Route::post('/build', [BuildController::class, 'store'])->name('build.store');
-  Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
-  // и т. д.
-});
+// Route::middleware('auth')->group(function () {
+//   // и т. д.
+// });
+Route::get('/build/create', [BuildController::class, 'create'])->name('build.create');
+Route::post('/build', [BuildController::class, 'store'])->name('build.store');
+Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
 
 
 
