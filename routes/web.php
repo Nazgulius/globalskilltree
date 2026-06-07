@@ -35,18 +35,13 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // Защищённые маршруты (только для авторизованных)
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+  Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+  Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+  // маршруты для билдов
+  Route::get('/build/create', [BuildController::class, 'create'])->name('build.create');
+  Route::post('/build/save', [BuildController::class, 'store'])->name('build.store');
+  Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
 });
-
-// маршруты для билдов
-// Route::middleware('auth')->group(function () {
-//   // и т. д.
-// });
-Route::get('/build/create', [BuildController::class, 'create'])->name('build.create');
-Route::post('/build', [BuildController::class, 'store'])->name('build.store');
-Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
-
 
 
 // прочее
