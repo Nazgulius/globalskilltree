@@ -46,6 +46,9 @@ class BuildController extends Controller
             'level' => $validated['level'] ?? null,
         ]);
         
+        session()->flash('notifications', [
+          ['message' => 'Билд успешно создан!', 'type' => 'success'],
+        ]);
 
         // Перенаправляем на страницу созданного билда или на список билдов
         return redirect()->route('build.show', $build->id)

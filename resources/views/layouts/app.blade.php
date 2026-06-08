@@ -55,6 +55,17 @@
       </a></li>
     </ul>
         
+    <div class="notification-container">
+    <!-- Уведомления будут появляться здесь -->
+      @foreach (session('notifications', []) as $notification)
+        @php
+            $message = is_array($notification) ? ($notification['message'] ?? '') : $notification;
+            $type = is_array($notification) ? ($notification['type'] ?? 'success') : 'success';
+        @endphp
+        <x-notifications.push :message="$message" :type="$type" />
+      @endforeach
+    </div>
+
   </header> 
 
   <main class="py-4">
