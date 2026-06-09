@@ -15,6 +15,19 @@
   
 </head>
 <body>
+  <!-- Уведомления будут появляться здесь -->
+  <div class="notification-container">     
+    @foreach (session('notifications', []) as $notification)
+      @php
+          $message = is_array($notification) ? ($notification['message'] ?? '') : $notification;
+          $type = is_array($notification) ? ($notification['type'] ?? 'success') : 'success';
+      @endphp
+      <x-notifications.push :message="$message" :type="$type" />
+    @endforeach
+  </div> 
+  <!-- <div class="notification-container"></div> -->
+  
+
   <header class="header">
     <h1 class="title-select">Global Skill Tree</h1>
     <hr>
@@ -54,17 +67,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Baseline Home SVG Icon</title><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z"></path></svg>
       </a></li>
     </ul>
-        
-    <div class="notification-container">
-    <!-- Уведомления будут появляться здесь -->
-      @foreach (session('notifications', []) as $notification)
-        @php
-            $message = is_array($notification) ? ($notification['message'] ?? '') : $notification;
-            $type = is_array($notification) ? ($notification['type'] ?? 'success') : 'success';
-        @endphp
-        <x-notifications.push :message="$message" :type="$type" />
-      @endforeach
-    </div>
 
   </header> 
 

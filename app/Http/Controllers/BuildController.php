@@ -47,7 +47,7 @@ class BuildController extends Controller
         ]);
         
         session()->flash('notifications', [
-          ['message' => 'Билд успешно создан!', 'type' => 'success'],
+          ['message' => "Билд '{$build->name}' успешно создан!", 'type' => 'success'],
         ]);
 
         // Перенаправляем на страницу созданного билда или на список билдов

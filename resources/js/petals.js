@@ -1,18 +1,19 @@
-const container = document.getElementById('petal-container');
-const toggle = document.getElementById('petalToggle');
+// petals.js
 
-// Настройки анимации
 const PETAL_COUNT = 30;
 const COLORS = [
-    '#ffb7c5', // нежно‑розовый
-    '#ff9eb5', // розовый
-    '#ff85a1', // потемнее
-    '#f9a8b8', // тёплый розовый
-    '#fbb1c2'  // перламутровый
+    '#ffb7c5',
+    '#ff9eb5',
+    '#ff85a1',
+    '#f9a8b8',
+    '#fbb1c2'
 ];
 
 let animationActive = true;
 let animationId = null;
+let petals = [];
+let container = null;
+let toggle = null;
 
 class Petal {
     constructor(container) {
@@ -20,20 +21,19 @@ class Petal {
         this.element = document.createElement('div');
         this.element.className = 'petal';
 
-        // Случайные параметры
-        this.width = Math.random() * 30 + 15; // 15–45 px
+        this.width = Math.random() * 30 + 15;
         this.height = this.width * (Math.random() * 0.4 + 0.6);
         this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        this.opacity = Math.random() * 0.7 + 0.2; // 0.2–0.9
+        this.opacity = Math.random() * 0.7 + 0.2;
         this.x = Math.random() * window.innerWidth;
-        this.y = -50; // начинаем выше экрана
-        this.speedY = Math.random() * 2 + 1; // скорость падения
+        this.y = -50;
+        this.speedY = Math.random() * 2 + 1;
+        // Начальный угол — используем rotation
         this.rotation = Math.random() * 360;
-        this.rotationSpeed = (Math.random() - 0.5) * 2; // вращение
-        this.id = Math.random(); // уникальный идентификатор для вариативности
+        this.rotationSpeed = (Math.random() - 0.5) * 2;
+        this.id = Math.random();
 
-
-        // Применяем стили
+        // ВАЖНО: здесь используем this.rotation, а не this.rotationZ
         this.element.style.cssText = `
           position: absolute;
           width: ${this.width}px;
@@ -41,7 +41,7 @@ class Petal {
           background-color: ${this.color};
           opacity: ${this.opacity};
           border-radius: 80% 20% 80% 20% / 60% 40% 60% 40%;
-          transform: rotateZ(${this.rotationZ}deg);
+          transform: rotateZ(${this.rotation}deg);
           transform-style: preserve-3d;
           perspective: 1000px;
           backface-visibility: hidden;
@@ -52,106 +52,113 @@ class Petal {
           will-change: transform, top, left;
         `;
 
-        this.container.appendChild(this.element);
+        // Добавляем элемент только если контейнер существует
+        if (this.container) {
+            this.container.appendChild(this.element);
+        }
     }
 
     update() {
-      if (!animationActive) return;
+        if (!animationActive) return;
 
-      // Падение вниз
-      this.y += this.speedY;
-  
-      // Заметное движение влево‑вправо (увеличенная амплитуда)
-      const swayAmplitude = 100; // px — расстояние смещения влево/вправо
-      const swaySpeed = 0.0001;
-      this.x += Math.sin(Date.now() * swaySpeed + this.y * 0.001) * swayAmplitude * 0.03;
-  
-      // Дополнительное плавающее движение (другой период)
-      // const floatAmplitude = 50; // px
-      // const floatSpeed = 0.003;
-      // this.x += Math.cos(Date.now() * floatSpeed + this.y * 0.2) * floatAmplitude * 0.01;
-  
-      // Вращение по всем осям
-      this.rotationX = (Math.sin(Date.now() * 0.002 + this.id * 10) * 30); // ±30° по X
-      this.rotationY = (Math.cos(Date.now() * 0.0015 + this.id * 20) * 45); // ±45° по Y
-      this.rotationZ += this.rotationSpeed; // вращение по Z (вокруг оси)
-  
-      // Обновляем стили с 3D‑трансформацией
-      this.element.style.top = `${this.y}px`;
-      this.element.style.left = `${this.x}px`;
-      this.element.style.transform = `
-          translateZ(0)
-          rotateX(${this.rotationX}deg)
-          rotateY(${this.rotationY}deg)
-          rotateZ(${this.rotationZ}deg)
-      `;
-  
-      // Проверяем границы контейнера: если лепесток ушёл за нижний край или за боковые границы — удаляем его
-      const containerRect = this.container.getBoundingClientRect();
-      const petalBottom = this.y + this.height;
-      const petalRight = this.x + this.width;
-      const petalLeft = this.x;
+        this.y += this.speedY;
 
-      if (
-          petalBottom > containerRect.height || // ниже нижней границы контейнера
-          petalRight < 0 || // левее левой границы
-          petalLeft > containerRect.width // правее правой границы
-      ) {
-          this.reset();
-          return;
-      }
+        const swayAmplitude = 100;
+        const swaySpeed = 0.0001;
+        this.x += Math.sin(Date.now() * swaySpeed + this.y * 0.001) * swayAmplitude * 0.03;
+
+        this.rotationX = (Math.sin(Date.now() * 0.002 + this.id * 10) * 30);
+        this.rotationY = (Math.cos(Date.now() * 0.0015 + this.id * 20) * 45);
+
+        // Здесь уже ведём отдельный счётчик вращения по Z
+        if (!this.rotationZ) this.rotationZ = this.rotation;
+        this.rotationZ += this.rotationSpeed;
+
+        this.element.style.top = `${this.y}px`;
+        this.element.style.left = `${this.x}px`;
+        this.element.style.transform = `
+            translateZ(0)
+            rotateX(${this.rotationX}deg)
+            rotateY(${this.rotationY}deg)
+            rotateZ(${this.rotationZ}deg)
+        `;
+
+        const containerRect = this.container.getBoundingClientRect();
+        const petalBottom = this.y + this.height;
+        const petalRight = this.x + this.width;
+        const petalLeft = this.x;
+
+        if (
+            petalBottom > containerRect.height ||
+            petalRight < 0 ||
+            petalLeft > containerRect.width
+        ) {
+            this.reset();
+            return;
+        }
     }
-    
 
     reset() {
         this.x = Math.random() * window.innerWidth;
         this.y = -50;
         this.rotation = Math.random() * 360;
+        if (!this.rotationZ) this.rotationZ = this.rotation;
     }
 }
 
-// Создаём лепестки
-const petals = [];
-for (let i = 0; i < PETAL_COUNT; i++) {
-    petals.push(new Petal(container));
-}
+// Весь код, который зависит от DOM, оборачиваем в DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    container = document.getElementById('petal-container');
+    toggle = document.getElementById('petalToggle');
 
-// Анимация
-function animate() {
-    if (!animationActive) {
-        cancelAnimationFrame(animationId);
+    if (!container) {
+        console.warn('⚠️ #petal-container не найден. Анимация лепестков отключена.');
         return;
     }
-    
-    petals.forEach(petal => petal.update());
-    animationId = requestAnimationFrame(animate);
-}
 
-// Обработчик тумблера
-toggle.addEventListener('change', function() {
-    animationActive = this.checked;
-    
-    if (animationActive) {
-        animate();
-        petals.forEach(petal => {
-          petal.element.style.opacity = '100';
-      });
-    } else {
-        // Останавливаем анимацию и скрываем лепестки
-        petals.forEach(petal => {
-            petal.element.style.opacity = '0';
-        });
-        cancelAnimationFrame(animationId);
+    // Создаём лепестки
+    for (let i = 0; i < PETAL_COUNT; i++) {
+        petals.push(new Petal(container));
     }
-});
 
-// Запускаем анимацию изначально
-animate();
+    function animate() {
+        if (!animationActive) {
+            cancelAnimationFrame(animationId);
+            return;
+        }
 
-// Обработка изменения размера окна
-window.addEventListener('resize', function() {
-    // Обновляем позиции лепестков при изменении размера окна
-    petals.forEach(petal => {
-        petal.x = Math.random() * window.innerWidth;
+        petals.forEach(petal => petal.update());
+        animationId = requestAnimationFrame(animate);
+    }
+
+    // Обработчик тумблера
+    if (toggle) {
+        toggle.addEventListener('change', function() {
+            animationActive = this.checked;
+
+            if (animationActive) {
+                animate();
+                petals.forEach(petal => {
+                    petal.element.style.opacity = '1';
+                });
+            } else {
+                petals.forEach(petal => {
+                    petal.element.style.opacity = '0';
+                });
+                cancelAnimationFrame(animationId);
+            }
+        });
+    } else {
+        console.warn('⚠️ #petalToggle не найден. Тумблер анимации лепестков отключён.');
+    }
+
+    // Запускаем анимацию
+    animate();
+
+    // Обработка изменения размера окна
+    window.addEventListener('resize', function() {
+        petals.forEach(petal => {
+            petal.x = Math.random() * window.innerWidth;
+        });
     });
 });

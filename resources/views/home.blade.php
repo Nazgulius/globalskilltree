@@ -4,6 +4,10 @@
 <div id="petal-container">
   <h1 class="home-title">Добро пожаловать в калькулятор умений. Выберите игру, которая вас интересует.</h1>
 
+  <button id="click" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Тест уведомления
+    </button>
+
   <div class="container">
     <div class="container-element">
       <a href="{{ route('buildListPage') }}" class="cont-elem-a">
