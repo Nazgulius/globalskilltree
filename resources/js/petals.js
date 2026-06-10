@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     } else {
-        console.warn('⚠️ #petalToggle не найден. Тумблер анимации лепестков отключён.');
+      console.warn('⚠️ #petalToggle не найден. Тумблер анимации лепестков отключён.');
     }
 
     // Запускаем анимацию

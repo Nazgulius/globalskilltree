@@ -1,51 +1,58 @@
-.notification-container {
+.notif-container {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  pointer-events: none; /* чтобы клики мимо уведомлений проходили сквозь контейнер */
-}
-
-.notification-item {
-  pointer-events: auto; /* а по самому уведомлению можно кликнуть, если нужно */
-  max-width: 380px;
   width: 100%;
+  max-width: 448px; /* как max-w-md */
+  padding: 0 16px 16px 0; /* чтобы уведомления не слипались друг с другом */
+}
 
-  /* Дизайн уведомления (зелёный стиль) */
-  background-color: #d1fae5;
-  border-left: 6px solid #10b981;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.notif-item {
+  /* это не отдельный класс, мы анимируем сам .notif-container */
+}
+
+.notif-box {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
   border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
   padding: 12px 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
 
-  /* Анимация появления */
-  transform: translateX(30px) translateY(-20px);
+.notif-bar {
+  flex-shrink: 0;
+  width: 6px;
+  height: 100%;
+  margin-right: 12px;
+}
+
+.notif-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Цвета полоски и текста по типам */
+.notif-container.notif-success .notif-bar   { background: #10b981; }
+.notif-container.notif-success .notif-text { color: #065f46; }
+
+.notif-container.notif-error .notif-bar    { background: #dc2626; }
+.notif-container.notif-error .notif-text   { color: #991b21; }
+
+.notif-container.notif-warning .notif-bar  { background: #d97706; }
+.notif-container.notif-warning .notif-text { color: #92400e; }
+
+/* Анимация появления/исчезновения */
+.notif-container:not([x-show]) {
+  transform: translateY(-20px) translateX(20px);
   opacity: 0;
-  animation: slideIn 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
-
-@keyframes slideIn {
-  to {
-      transform: translateX(0) translateY(0);
-      opacity: 1;
-  }
-}
-
-/* Анимация исчезновения */
-.notification-item.fade-out {
-  animation: slideOut 0.3s ease-out forwards;
-}
-
-@keyframes slideOut {
-  from {
-      transform: translateX(0) translateY(0);
-      opacity: 1;
-  }
-  to {
-      transform: translateX(30px) translateY(-20px);
-      opacity: 0;
-  }
+.notif-container[x-show] {
+  transform: translateY(0) translateX(0);
+  opacity: 1;
 }

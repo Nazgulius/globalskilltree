@@ -33,14 +33,14 @@ class BuildController extends Controller
             'description' => 'nullable|string',
             // skills — это JSON-поле, можно валидировать как JSON или просто как строку
             'skills' => 'nullable|json',
-            'level' => 'nullable|integer|min:1|max:99',
+            'level' => 'nullable|integer|min:1|max:300',
         ]);
 
         // Создаём новый билд и привязываем к текущему пользователю 
         $build = Build::create([
             'user_id' => Auth::id(),
             'name' => $validated['name'],
-            'name_class' => $validated['class'],
+            'class' => $validated['class'],
             'description' => $validated['description'] ?? null,
             'skills' => $validated['skills'] ?? null,
             'level' => $validated['level'] ?? null,
@@ -51,8 +51,7 @@ class BuildController extends Controller
         ]);
 
         // Перенаправляем на страницу созданного билда или на список билдов
-        return redirect()->route('build.show', $build->id)
-            ->with('success', 'Билд успешно создан!');
+        return redirect()->route('build.show', $build->id);
     }
 
     /**
