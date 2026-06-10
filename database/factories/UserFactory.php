@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    protected $model = User::class;
     /**
      * The current password being used by the factory.
      */
@@ -24,11 +25,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-      $faker = \Faker\Factory::create();
+      $name = Str::ucfirst(Str::random(6)) . ' ' . Str::ucfirst(Str::random(8));
+      $email = Str::random(8) . '@example.com';
 
         return [
-            'name' => $faker->name(),
-            'email' => $faker->unique()->safeEmail(),
+            'name' => $name,
+            'email' => $email,
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
