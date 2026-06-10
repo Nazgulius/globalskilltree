@@ -14,7 +14,65 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   
 </head>
-<body>
+<body>  
+  <!-- вариант с альфин -->
+  @if(session('notifications') && count(session('notifications')) > 0)
+      @foreach(session('notifications') as $notif)
+          <div 
+              x-data="{ show: true }" 
+              x-init="setTimeout(() => show = false, 5000)" 
+              x-show="show"
+              @click="show = false"
+              class="notif-container"
+              :class="'notif-' + ({{ $notif['type'] === 'error' ? "'error'" : ($notif['type'] === 'warning' ? "'warning'" : "'success'") }})"
+              x-on:transitionend.self="if (!show) $el.remove()"
+          >
+              <div class="notif-box">
+                  <div class="notif-bar"></div>
+                  <p class="notif-text">{{ $notif['message'] }}</p>
+              </div>
+          </div>
+      @endforeach
+  @endif
+
+  <!-- вариант без альфин и js -->
+  <!-- @if(session('notifications'))
+      @foreach(session('notifications') as $notif)
+          <div class="notif-container notif-{{ $notif['type'] }}">
+              <div class="notif-box">
+                  <div class="notif-bar"></div>
+                  <p class="notif-text">{{ $notif['message'] }}</p>
+              </div>
+          </div>
+      @endforeach
+  @endif -->
+
+  <!-- <div x-data="{ counter: 1, show: false, items: ['habr', 'hubr', 'hobr'] }">
+      <h1 x-text="counter"></h1>
+      <button x-on:click="counter++">Добавляем +1 к числу выше</button>
+      <button x-on:click="counter + 2">text +2</button>
+      <hr>
+      <button
+        x-on:click="show = ! show"
+        x-text="show ? 'Скрыть' : 'Показать'"
+      ></button>
+      <template x-if="show">
+        <p>Меня видно!</p>
+      </template>
+      <hr>
+      <ol>
+        <template x-for="item in items" x-bind:key="item">
+          <li>
+            <p x-text="item"></p>
+          </li>
+        </template>
+      </ol>
+
+    </div> -->
+
+  <!-- <div class="notification-container"></div> -->
+  
+
   <header class="header">
     <h1 class="title-select">Global Skill Tree</h1>
     <hr>
@@ -54,7 +112,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Baseline Home SVG Icon</title><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z"></path></svg>
       </a></li>
     </ul>
-        
+
   </header> 
 
   <main class="py-4">
@@ -75,5 +133,14 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.querySelectorAll('.notif-container').forEach(el => {
+      el.addEventListener('click', () => el.remove());
+    });
+    setTimeout(() => document.querySelectorAll('.notif-container').forEach(el => el.remove()), 3000);
+  </script>   
+
+
 </body>
 </html>

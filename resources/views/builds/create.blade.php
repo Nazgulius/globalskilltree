@@ -21,6 +21,10 @@
             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
         </div>
         <div class="mb-3">
+            <label for="level" class="form-label">Рекомендуемый уровень персонажа</label>
+            <input type="text" name="level" id="level" class="form-control" value="{{ old('level') }}" required>
+        </div>
+        <div class="mb-3">
             <label for="class" class="form-label">Класс персонажа</label>
             <select name="class" id="class" class="form-select" required>
               @foreach ($gameClasses as $gameClass)
@@ -28,8 +32,6 @@
                   {{ old('class') == $gameClass->name_class ? 'selected' : '' }}>
                   {{ $gameClass->name_class }}</option>
               @endforeach
-                <!--<option value="Monk">Monk</option> -->
-                <!-- Добавьте другие классы по необходимости -->
             </select>
         </div>
         <div class="mb-3">
