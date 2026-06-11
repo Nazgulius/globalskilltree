@@ -93,4 +93,15 @@ class BuildController extends Controller
             'has_more' => $builds->count() === $limit
         ]);
     }
+
+    public function destroy(Build $build) 
+    {
+      $build->delete();
+
+      session()->flash('notifications', [
+        ['message' => 'Билд удалён.', 'type' => 'warning']
+      ]);
+
+      return redirect()->route('builds.index');
+    }
 }

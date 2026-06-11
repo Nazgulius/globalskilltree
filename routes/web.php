@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/build/create', [BuildController::class, 'create'])->name('build.create');
   Route::post('/build/save', [BuildController::class, 'store'])->name('build.store');
   Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
+  Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.destroy');
 });
 
 
