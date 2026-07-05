@@ -2,11 +2,8 @@
 
 @section('content')
 <div id="petal-container">
-  <h1 class="home-title">Добро пожаловать в калькулятор умений. Выберите игру, которая вас интересует.</h1>
-
-  <button id="click" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        Тест уведомления
-    </button>
+  <h1 class="title-select">Global Skill Tree</h1>
+  <h1 class="home-title">Добро пожаловать в каталог билдов. Выберите игру, которая вас интересует.</h1>
 
   <div class="container">
     <div class="container-element">
