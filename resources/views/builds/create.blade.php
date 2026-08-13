@@ -17,12 +17,23 @@
         @endif
 
         <div class="mb-3">
+            <label for="game_id" class="form-label">Название игры</label>
+            <select name="game_id" id="game_id" class="form-select" required>
+              <option value="" disabled selected>Выберите игру</option>
+              @foreach ($games as $game)
+                <option value="{{ $game->id}}"
+                  {{ old('game_id') == $game->id ? 'selected' : '' }}>
+                  {{ $game->name_game }}</option>
+              @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="name" class="form-label">Название билда</label>
             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
         </div>
         <div class="mb-3">
-            <label for="level" class="form-label">Рекомендуемый уровень персонажа</label>
-            <input type="text" name="level" id="level" class="form-control" value="{{ old('level') }}" required>
+            <label for="recommended_level" class="form-label">Рекомендуемый уровень персонажа</label>
+            <input type="number" name="recommended_level" id="recommended_level" class="form-control" value="{{ old('recommended_level') }}">
         </div>
         <div class="mb-3">
             <label for="class" class="form-label">Класс персонажа</label>

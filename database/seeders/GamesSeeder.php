@@ -15,34 +15,17 @@ class GamesSeeder extends Seeder
     {
         DB::table('games')->insert([
           'name_game' => 'Ragnarok Online',
-          'name_server' => 'Myth of Yggdrasil',
-          'link_server' => 'https://mythofyggdrasil.com/',
-          'max_lvl' => '100',
-          'description' => 'Myth of Yggdrasil combines a classic foundation with modern design to deliver an experience that respects its origins while evolving for modern players.',
-        ]);
-
-        DB::table('games')->insert([
-          'name_game' => 'Ragnarok Online',
-          'name_server' => 'MOTR',
-          'link_server' => 'https://motr-online.com/',
-          'max_lvl' => '250',
-          'description' => 'Русскоязычный сервер онлайн-игры Ragnarok Online (РО). Он существует более 17 лет и продолжает активно обновляться.',
+          'description' => 'Ragnarok Online — массовая многопользовательская ролевая онлайн-игра (MMORPG), разработанная корейской компанией GRAVITY Co., Ltd.. Выпущена в 2002 году.',
         ]);
 
         DB::table('games')->insert([
           'name_game' => 'Ragnarok Online 2',
-          'name_server' => 'RO2',
-          'link_server' => 'https://playragnarok2.com/',
-          'max_lvl' => '100',
-          'description' => 'Ragnarok Online 2 info',
+          'description' => 'Ragnarok Online 2 — это MMORPG в жанре фэнтези, продолжение популярной игры Ragnarok Online. Её разработала южнокорейская студия Gravity Corp., а позже поддержку взяла на себя Gravity Interactive. Игра вышла 1 мая 2013 года.',
         ]);
 
         DB::table('games')->insert([
           'name_game' => 'Ragnarok Online 3',
-          'name_server' => 'RO3',
-          'link_server' => 'https://ro3global.com/',
-          'max_lvl' => '100',
-          'description' => 'Ragnarok Online 3 info',
+          'description' => 'Ragnarok Online 3 — это кроссплатформенная MMORPG от студии Gravity, являющаяся официальным продолжением культовой Ragnarok Online. Игра сочетает в себе классическую атмосферу оригинала с современными механиками, обновлённой пиксельной графикой и сезонной моделью развития.',
         ]);
 
     }

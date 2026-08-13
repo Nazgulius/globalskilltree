@@ -16,9 +16,11 @@ Route::get('/', function () {
 //   return view('home', ['games' => $games]);
 // })->name('home');
 
-Route::view('/buildListPage', 'buildListPage', [
-  'games' => DB::table('games')->get()
-])->name('buildListPage');
+// Route::view('/buildListPage', 'buildListPage', [
+//   'games' => DB::table('games')->get()
+// ])->name('buildListPage');
+
+Route::get('/buildListPage', [BuildController::class, 'index'])->name('buildListPage');
 
 Route::view('/newGame', 'layouts.newGame', [
   'games' => DB::table('games')->get()

@@ -43,6 +43,10 @@ class Build extends Model
       return $this->belongsTo(User::class);
     }
 
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 
 
 }

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use App\Models\Build;
+use App\Models\Game;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class BuildController extends Controller
 {
@@ -17,7 +21,8 @@ class BuildController extends Controller
         // Просто возвращаем шаблон с формой создания билда
         // return view('builds.create');
         $gameClasses = \App\Models\GameClass::all(); 
-        return view('builds.create', compact('gameClasses'));
+        $games = \App\Models\Game::all();
+        return view('builds.create', compact('gameClasses', 'games'));
     }
 
     /**
@@ -28,22 +33,36 @@ class BuildController extends Controller
                 
         // Валидируем входящие данные
         $validated = $request->validate([
+            'game_id' => 'required|exists:games,id',
             'name' => 'required|string|max:255',
             'class' => 'required|string|max:100',
-            'description' => 'nullable|string',
+            'recommended_level' => 'nullable|integer|min:1|max:300',
+            'description_mini' => 'nullable|string',
+            'strengths_and_weaknesses' => 'nullable|string',
+            'characteristics' => 'nullable|string',
+            'equipment' => 'nullable|string',
             // skills — это JSON-поле, можно валидировать как JSON или просто как строку
             'skills' => 'nullable|json',
-            'level' => 'nullable|integer|min:1|max:300',
+            'description' => 'nullable|string',
+            'video' => 'nullable|string',
+            'items' => 'nullable|string',
         ]);
 
         // Создаём новый билд и привязываем к текущему пользователю 
         $build = Build::create([
             'user_id' => Auth::id(),
+            'game_id' => $validated['game_id'],
             'name' => $validated['name'],
             'class' => $validated['class'],
-            'description' => $validated['description'] ?? null,
+            'recommended_level' => $validated['recommended_level'] ?? null,
+            'description_mini' => $validated['description_mini'] ?? null,
+            'strengths_and_weaknesses' => $validated['strengths_and_weaknesses'] ?? null,
+            'characteristics' => $validated['characteristics'] ?? null,
+            'equipment' => $validated['equipment'] ?? null,
             'skills' => $validated['skills'] ?? null,
-            'level' => $validated['level'] ?? null,
+            'description' => $validated['description'] ?? null,
+            'video' => $validated['video'] ?? null,
+            'items' => $validated['items'] ?? null,
         ]);
         
         session()->flash('notifications', [
@@ -66,32 +85,24 @@ class BuildController extends Controller
         return view('builds.show', compact('build'));
     }
 
-    // Ваш существующий метод index() остаётся без изменений
     public function index(Request $request)
     {
-        $page = $request->input('page', 1);
-        $limit = $request->input('limit', 10);
-        $offset = ($page - 1) * $limit;
+         $gameId = $request->input('game_id');
+          $skill = $request->input('skill');
+          $levelMin = $request->input('level_min');
 
-        $query = Build::query();
+          $query = Build::with('user') // если в шаблоне нужен автор билда
+              ->when($gameId, fn($q) => $q->where('game_id', $gameId))
+              ->when($skill, fn($q) => $q->whereRaw('JSON_CONTAINS(skills, ?)', [$skill]))
+              ->when($levelMin, fn($q) => $q->where('recommended_level', '>=', $levelMin))
+              ->orderBy('created_at', 'DESC');
 
-        if ($request->has('skill')) {
-            $query->whereRaw('JSON_CONTAINS(skills, ?)', [$request->skill]);
-        }
+          // Пагинация: Laravel сам сделает offset/limit и посчитает страницы
+          $builds = $query->paginate(10);
 
-        if ($request->has('level_min')) {
-            $query->where('level', '>=', $request->level_min);
-        }
+          $games = Game::all(); // вместо DB::table('games')->get()
 
-        $builds = $query->orderBy('created_at', 'DESC')
-            ->offset($offset)
-            ->limit($limit)
-            ->get();
-
-        return response()->json([
-            'builds' => $builds,
-            'has_more' => $builds->count() === $limit
-        ]);
+          return view('buildListPage', compact('builds', 'games', 'gameId'));
     }
 
     public function destroy(Build $build) 

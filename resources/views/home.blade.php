@@ -7,7 +7,7 @@
 
   <div class="container">
     <div class="container-element">
-      <a href="{{ route('buildListPage') }}" class="cont-elem-a">
+      <a href="{{ route('buildListPage', ['game_id' => 1]) }}" class="cont-elem-a">
         <div class="cont-elem-img" data-game="ro1" alt="Ragnarok Online 1">
           
         </div>

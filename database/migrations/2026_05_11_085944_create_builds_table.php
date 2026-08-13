@@ -14,17 +14,25 @@ return new class extends Migration
         Schema::create('builds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('game_id')->nullable()->constrained('games')->onDelete('set null');
             $table->string('name'); 
-            $table->string('class');
-            $table->text('description');
+            $table->string('class')->default('Novice');
+            $table->integer('recommended_level')->nullable();
+            $table->text('description_mini')->nullable();
+            $table->text('strengths_and_weaknesses')->nullable();
+            $table->text('characteristics')->nullable();
+            $table->text('equipment')->nullable();
             $table->json('skills')->nullable(); 
+            $table->text('description')->nullable();
+            $table->text('video')->nullable();
             $table->json('items')->nullable(); 
-            $table->json('characteristics')->nullable(); 
             $table->boolean('is_published')->default(false);
             $table->timestamps();
-
+            
             $table->index('user_id');
             $table->index('is_published');
+            $table->index('game_id'); 
+            $table->index('recommended_level');
         });
     }
 

@@ -7,7 +7,7 @@
             <h2>{{ $build->name }}</h2>
             <p><strong>Класс:</strong> {{ $build->class }}</p>
             <p><strong>Автор:</strong> {{ $build->user->name }}</p>
-            <p><strong>Уровень:</strong> {{ $build->level ?? 'Не указан' }}</p>
+            <p><strong>Уровень:</strong> {{ $build->recommended_level ?? 'Не указан' }}</p>
             @if($build->description)
                 <p><strong>Описание:</strong> {{ $build->description }}</p>
             @endif
