@@ -25,15 +25,17 @@
   <!-- список билдов -->
   <div class="class-list">
     @forelse ($builds as $build)
+      <a href="{{ route('build.show', $build) }}">Посмотреть: {{ $build->name }}
         <div>{{ $build->name_game }} (игра: {{ $build->game_id }})
           <h2>{{ $build->name }}</h2>
               <p><strong>Класс:</strong> {{ $build->class }}</p>
               <p><strong>Автор:</strong> {{ $build->user->name }}</p>
-              <p><strong>Уровень:</strong> {{ $build->level ?? 'Не указан' }}</p>
+              <p><strong>Уровень:</strong> {{ $build->recommended_level ?? 'Не указан' }}</p>
               @if($build->description)
                   <p><strong>Описание:</strong> {{ $build->description }}</p>
               @endif
         </div>
+      </a>
     @empty
         <p>Нет билдов по этому фильтру.</p>
     @endforelse

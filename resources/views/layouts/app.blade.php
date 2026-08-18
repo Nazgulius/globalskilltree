@@ -79,11 +79,11 @@
     </a>
     
     <ul class="navi-list">
-      <li class="navi-list-item navi-hover"><a href="{{ route('buildListPage') }}" class="">Ragnarok Online</a></li>
-      <li class="navi-list-item navi-hover"><a href="{{ route('buildListPage') }}" class="">Ragnarok Online 2</a></li>
-      <li class="navi-list-item navi-hover"><a href="{{ route('buildListPage') }}" class="">Ragnarok Online 3</a></li>
-      <li class="navi-list-item navi-hover"><a href="{{ route('newGame') }}" class="">Name Game</a></li>
-      <li class="navi-list-item navi-hover"><a href="{{ route('createBuild') }}" class="">Создать билд</a></li>
+      <li class=""><a href="{{ route('buildListPage') }}" class="navi-list-item navi-hover">Ragnarok Online</a></li>
+      <li class=""><a href="{{ route('buildListPage') }}" class="navi-list-item navi-hover">Ragnarok Online 2</a></li>
+      <li class=""><a href="{{ route('buildListPage') }}" class="navi-list-item navi-hover">Ragnarok Online 3</a></li>
+      <li class=""><a href="{{ route('newGame') }}" class="navi-list-item navi-hover">Name Game</a></li>
+      <li class=""><a href="{{ route('createBuild') }}" class="navi-list-item navi-hover">Создать билд</a></li>
       <li class="navi-list-item">
         <div class="container">
             <div class="navbar-nav ms-auto">
@@ -91,20 +91,13 @@
                     <a class="nav-link navi-hover" href="{{ route('login') }}">Войти</a>
                     <a class="nav-link navi-hover" href="{{ route('register') }}">Зарегистрироваться</a>
                 @else
-                    <div class="nav-item dropdown navi-hover">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            {{ Auth::user()->name }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item navi-hover" href="{{ route('profile') }}">Профиль</a></li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">Выйти</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="nav-item">
+                      <a class="dropdown-item navi-hover" href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
+                      <form action="{{ route('logout') }}" method="POST">
+                          @csrf
+                          <button type="submit" class="dropdown-item">Выйти</button>
+                      </form>
+                   </div>
                 @endguest
             </div>
         </div>

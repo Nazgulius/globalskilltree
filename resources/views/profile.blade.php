@@ -19,7 +19,7 @@
                     @if($user->builds->count())
                         <ul>
                             @foreach($user->builds as $build)
-                                <li>{{ $build->name }} — <a href="{{ route('build.show', $build) }}">Посмотреть</a></li>
+                                <li><a href="{{ route('build.show', $build) }}">Посмотреть: {{ $build->name }}</a></li>
                             @endforeach
                         </ul>
                         <p>Для создания билда нажмите кнопку.</p>
