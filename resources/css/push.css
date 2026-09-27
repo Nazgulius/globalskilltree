@@ -56,3 +56,12 @@
   transform: translateY(0) translateX(0);
   opacity: 1;
 }
+
+.notif-progress {
+  height: 4px;               /* высота полоски */
+  width: 100%;               /* на всю ширину контейнера */
+  background-color: #004d00; /* тёмно-зелёный цвет (подбери оттенок по дизайну) */
+  border-radius: 2px 2px 0 0;/* скругление сверху */
+  margin-bottom: 8px;        /* отступ до текста */
+}
+

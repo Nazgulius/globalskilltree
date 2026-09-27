@@ -5,7 +5,7 @@
   <h1 class="title-select">Global Skill Tree</h1>
   <h1 class="home-title">Добро пожаловать в каталог билдов. Выберите игру, которая вас интересует.</h1>
 
-  <div class="container">
+  <div class="home-container">
     <div class="container-element">
       <a href="{{ route('buildListPage', ['game_id' => 1]) }}" class="cont-elem-a">
         <div class="cont-elem-img" data-game="ro1" alt="Ragnarok Online 1">

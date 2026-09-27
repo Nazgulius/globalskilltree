@@ -28,9 +28,11 @@
               x-on:transitionend.self="if (!show) $el.remove()"
           >
               <div class="notif-box">
-                  <div class="notif-bar"></div>
-                  <p class="notif-text">{{ $notif['message'] }}</p>
+                
+                <div class="notif-bar"></div>
+                <p class="notif-text">{{ $notif['message'] }}</p>
               </div>
+              <div class="notif-progress"></div>
           </div>
       @endforeach
   @endif
@@ -85,7 +87,7 @@
       <li class=""><a href="{{ route('newGame') }}" class="navi-list-item navi-hover">Name Game</a></li>
       <li class=""><a href="{{ route('createBuild') }}" class="navi-list-item navi-hover">Создать билд</a></li>
       <li class="navi-list-item">
-        <div class="container">
+        <div class="container-nav-auto">
             <div class="navbar-nav ms-auto">
                 @guest
                     <a class="nav-link navi-hover" href="{{ route('login') }}">Войти</a>
@@ -109,15 +111,12 @@
 
   </header> 
 
-  <main class="py-4">
-    <div class="container mt-4">
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-      <!--<h1>Добро пожаловать на сайт билдов Ragnarok Online!</h1>-->
-        <!-- Здесь будет контент с билдами -->
-        
+  <main class="app-main">
+    <div class="main-container">
+      @if (session('success'))
+          <div class="alert alert-success">{{ session('success') }}</div>
+      @endif
+              
       @yield('content')
     </div>
   </main>
