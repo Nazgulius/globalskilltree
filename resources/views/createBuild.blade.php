@@ -36,6 +36,9 @@
     <div class="create-skilltree block content-section" id="section-6">
       <h2>Навыки </h2>
       <p>дерево навыков</p>
+      <div class="cropped-iframe-wrapper">
+        <iframe src="https://calc.motr-online.com/tree" class="cropped-frame"></iframe>
+      </div>
     </div>
 
     <div class="create-description-all block content-section" id="section-7">

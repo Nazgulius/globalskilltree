@@ -273,6 +273,22 @@ h3, h4 {
   padding: 1px;
 }
 
+.cropped-iframe-wrapper {
+  width: 800px;   /* ширина видимой области */
+  height: 500px;  /* высота видимой области */
+  overflow: hidden;
+  position: relative;
+}
+
+.cropped-frame {
+  /* ширина/высота должны быть больше, чем wrapper, чтобы было что «обрезать» */
+  width: 1200px;
+  height: 900px;
+  border: none;
+  /* смещение содержимого внутри wrapper'а */
+  transform: translate(-230px, -240px); /* сдвиг X, Y внутри контейнера */
+}
+
 
 .ePopDiv {
   max-width: 600px;
