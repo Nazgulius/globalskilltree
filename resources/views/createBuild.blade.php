@@ -33,7 +33,7 @@
       <p>перечень шмота</p>
     </div>
 
-    <div class="create-skilltree block content-section" id="section-6">
+    <div class="create-skilltree block content-section block-skill" id="section-6">
       <h2>Навыки </h2>
       <p>дерево навыков</p>
       <div class="cropped-iframe-wrapper">

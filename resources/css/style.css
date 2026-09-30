@@ -139,6 +139,10 @@ h3, h4 {
   height: 400px;
 }
 
+.block-skill {
+  height: 90vh;
+}
+
 .description-top {
   height: 100px;
   border: 1px solid rgba(170, 170, 170, 0.8); 
@@ -274,19 +278,22 @@ h3, h4 {
 }
 
 .cropped-iframe-wrapper {
-  width: 800px;   /* ширина видимой области */
-  height: 500px;  /* высота видимой области */
+  width: 100%;   /* ширина видимой области */
+  height: 100%;  /* высота видимой области */
   overflow: hidden;
   position: relative;
+  margin-left: 20px;
 }
 
 .cropped-frame {
   /* ширина/высота должны быть больше, чем wrapper, чтобы было что «обрезать» */
-  width: 1200px;
-  height: 900px;
+  width: 100%;
+  height: 100%;
   border: none;
   /* смещение содержимого внутри wrapper'а */
   transform: translate(-230px, -240px); /* сдвиг X, Y внутри контейнера */
+  
+  
 }
 
 
