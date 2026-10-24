@@ -19,11 +19,16 @@ class Build extends Model
       'user_id',
       'name', 
       'class',
+      'recommended_level',
+      'description_mini',
+      'strengths_and_weaknesses',
       'description', 
       'skills', 
       'items', 
       'characteristics', 
-      'is_published'
+      'is_published',
+      'equipment',
+      'video',
     ];
 
     // Если нужны кастомные типы данных для полей

@@ -33,7 +33,7 @@
               <p><strong>Уровень:</strong> {{ $build->recommended_level ?? 'Не указан' }}</p>
               @if($build->description)
                   <p><strong>Описание:</strong> {{ $build->description }}</p>
-              @endif
+              @endif              
         </div>
       </a>
     @empty

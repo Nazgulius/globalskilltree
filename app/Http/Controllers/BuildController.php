@@ -29,8 +29,7 @@ class BuildController extends Controller
      * Сохранить новый билд в базе данных.
      */
     public function store(Request $request)
-    {
-                
+    {                
         // Валидируем входящие данные
         $validated = $request->validate([
             'game_id' => 'required|exists:games,id',
