@@ -12,6 +12,10 @@
   max-width: 95vw;
 }
 
+.container {
+  width: 80vw;
+}
+
 .content-section {
   margin-bottom: 4rem;
   scroll-margin-top: 80px; /* Отступ при прокрутке к секции */
@@ -70,3 +74,4 @@
     margin-top: 2rem;
   }
 }
+

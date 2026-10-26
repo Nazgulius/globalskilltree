@@ -2,25 +2,18 @@
 
 @section('content')
 <div id="loading" style="display: none;">Загрузка...</div>
-<div class="container mt-5">
+  <div class="container mt-5">
     <div class="card">
-
-        <div class="card-body">
-          <div class="create-title block content-section" id="section-1">
-            <h2>название {{ $build->name }}</h2>
-            <p>ключи фильтра 
-            имя автора, дата обновления
-            лайк, поделиться</p>
-          
-            <p><strong>Класс:</strong> {{ $build->class }}</p>
-            <p><strong>Автор:</strong> {{ $build->user->name }}</p>
-            <p><strong>Уровень:</strong> {{ $build->recommended_level ?? 'Не указан' }}</p>
-          @if($build->description)
-            <p><strong>Описание:</strong> {{ $build->description }}</p>
-          @endif
-        </div>
-        
-      </div>
+      <div class="block content-section" id="section-1">
+        <h2 class="create-title">название {{ $build->name }}</h2>
+        <p>ключи фильтра 
+        дата обновления
+        лайк, поделиться</p>
+      
+        <p><strong>Класс:</strong> {{ $build->class }}</p>
+        <p><strong>Автор:</strong> {{ $build->user->name }}</p>
+        <p><strong>Уровень:</strong> {{ $build->recommended_level ?? 'Не указан' }}</p>
+      </div> 
       
       <div class="create-description block content-section" id="section-2">
         <h2>короткое описание </h2>

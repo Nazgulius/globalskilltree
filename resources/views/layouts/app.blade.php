@@ -37,42 +37,6 @@
       @endforeach
   @endif
 
-  <!-- вариант без альфин и js -->
-  <!-- @if(session('notifications'))
-      @foreach(session('notifications') as $notif)
-          <div class="notif-container notif-{{ $notif['type'] }}">
-              <div class="notif-box">
-                  <div class="notif-bar"></div>
-                  <p class="notif-text">{{ $notif['message'] }}</p>
-              </div>
-          </div>
-      @endforeach
-  @endif -->
-
-  <!-- <div x-data="{ counter: 1, show: false, items: ['habr', 'hubr', 'hobr'] }">
-      <h1 x-text="counter"></h1>
-      <button x-on:click="counter++">Добавляем +1 к числу выше</button>
-      <button x-on:click="counter + 2">text +2</button>
-      <hr>
-      <button
-        x-on:click="show = ! show"
-        x-text="show ? 'Скрыть' : 'Показать'"
-      ></button>
-      <template x-if="show">
-        <p>Меня видно!</p>
-      </template>
-      <hr>
-      <ol>
-        <template x-for="item in items" x-bind:key="item">
-          <li>
-            <p x-text="item"></p>
-          </li>
-        </template>
-      </ol>
-
-    </div> -->
-
-  <!-- <div class="notification-container"></div> -->
   
   <div class="site-wrapper">
   <header class="header">

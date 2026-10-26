@@ -145,7 +145,8 @@ h3, h4 {
   background-color: rgba(209, 209, 209, 0.8);
   margin-bottom: 5px;
 
-  height: 400px;
+  min-height: 40px;
+  width: 70%;
 }
 
 .block-skill {

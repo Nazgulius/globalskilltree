@@ -3,14 +3,14 @@
 @section('content')
 <div class="page-container">
   <main class="main-content">
-  <h1>тут будет создание билда</h1>
-  <div id="loading" style="display: none;">Загрузка...</div>
+    <h1>тут будет создание билда</h1>
+    <div id="loading" style="display: none;">Загрузка...</div>
 
     <div class="create-title block content-section" id="section-1">
       <h2>название </h2>
       <p>ключи фильтра 
-  имя автора, дата обновления
-  лайк, поделиться</p>
+      имя автора, дата обновления
+      лайк, поделиться</p>
     </div>
 
     <div class="create-description block content-section" id="section-2">
