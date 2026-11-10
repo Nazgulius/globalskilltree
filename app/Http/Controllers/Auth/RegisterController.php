@@ -30,6 +30,11 @@ class RegisterController extends Controller
         ]);
 
         Auth::login($user);
+
+        session()->flash('notifications', [
+          ['message' => "Вы успешно зарегистрированы!", 'type' => 'success'],
+        ]);
+
         return redirect('/')->with('success', 'Регистрация прошла успешно!');
     }
 }

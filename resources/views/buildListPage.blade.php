@@ -9,7 +9,9 @@
 
   <!-- фильтр билдов -->
   <div class="filter-builds">
-    <p>тут будут фильтры для билдов</p>
+    <p>фильтры для билдов</p>
+    <a href="{{ route('buildListPage') }}" class="btn btn-sm btn-outline-secondary">Сбросить</a>
+
     <form action="{{ route('buildListPage') }}" method="GET">
         <select name="game_id" onchange="this.form.submit()">
             <option value="">Все игры</option>
@@ -26,7 +28,7 @@
   <div class="class-list">
     @forelse ($builds as $build)
       <a href="{{ route('build.show', $build) }}">Посмотреть: {{ $build->name }}
-        <div>{{ $build->name_game }} (игра: {{ $build->game_id }})
+        <div>
           <h2>{{ $build->name }}</h2>
               <p><strong>Класс:</strong> {{ $build->class }}</p>
               <p><strong>Автор:</strong> {{ $build->user->name }}</p>

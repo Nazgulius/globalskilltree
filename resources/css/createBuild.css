@@ -68,6 +68,7 @@
   .page-container {
     flex-direction: column;
   }
+  
   .sticky-sidebar {
     position: static;
     width: 100%;

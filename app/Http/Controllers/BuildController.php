@@ -30,6 +30,8 @@ class BuildController extends Controller
      */
     public function store(Request $request)
     {                
+      Log::debug('Filter store', $request->all()); // временно
+      
         // Валидируем входящие данные
         $validated = $request->validate([
             'game_id' => 'required|exists:games,id',
@@ -86,22 +88,24 @@ class BuildController extends Controller
 
     public function index(Request $request)
     {
-         $gameId = $request->input('game_id');
-          $skill = $request->input('skill');
-          $levelMin = $request->input('level_min');
+      Log::debug('Filter input', $request->all()); // временно
 
-          $query = Build::with('user') // если в шаблоне нужен автор билда
-              ->when($gameId, fn($q) => $q->where('game_id', $gameId))
-              ->when($skill, fn($q) => $q->whereRaw('JSON_CONTAINS(skills, ?)', [$skill]))
-              ->when($levelMin, fn($q) => $q->where('recommended_level', '>=', $levelMin))
-              ->orderBy('created_at', 'DESC');
+        $gameId = $request->input('game_id');
+        $skill = $request->input('skill');
+        $levelMin = $request->input('level_min');
 
-          // Пагинация: Laravel сам сделает offset/limit и посчитает страницы
-          $builds = $query->paginate(10);
+        $query = Build::with('user') // если в шаблоне нужен автор билда
+            ->when($gameId, fn($q) => $q->where('game_id', $gameId))
+            ->when($skill, fn($q) => $q->whereRaw('JSON_CONTAINS(skills, ?)', [$skill]))
+            ->when($levelMin, fn($q) => $q->where('recommended_level', '>=', $levelMin))
+            ->orderBy('created_at', 'DESC');
 
-          $games = Game::all(); // вместо DB::table('games')->get()
+        // Пагинация: Laravel сам сделает offset/limit и посчитает страницы
+        $builds = $query->paginate(10);
 
-          return view('buildListPage', compact('builds', 'games', 'gameId'));
+        $games = Game::all(); // вместо DB::table('games')->get()
+
+        return view('buildListPage', compact('builds', 'games', 'gameId'));
     }
 
     public function destroy(Build $build) 

@@ -123,13 +123,6 @@ h3, h4 {
   }
 }
 
-@media (max-width: 800px) {
-  .header {
-    margin: 0;
-    padding: 0;
-  }
-}
-
 .build-content {
   width: 98%;
   display: flex;

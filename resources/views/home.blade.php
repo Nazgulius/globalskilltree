@@ -14,14 +14,14 @@
       </a>
     </div>
     <div class="container-element">
-      <a href="{{ route('buildListPage') }}" class="cont-elem-a">
+      <a href="{{ route('buildListPage', ['game_id' => 2]) }}" class="cont-elem-a">
         <div class="cont-elem-img" data-game="ro2" alt="Ragnarok Online 2">
          
         </div>
       </a>
     </div>
     <div class="container-element">
-      <a href="{{ route('buildListPage') }}" class="cont-elem-a">
+      <a href="{{ route('buildListPage', ['game_id' => 3]) }}" class="cont-elem-a">
         <div class="cont-elem-img" data-game="ro3" alt="Ragnarok Online 3">
           
         </div>

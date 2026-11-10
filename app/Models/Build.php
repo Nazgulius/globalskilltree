@@ -17,18 +17,19 @@ class Build extends Model
     // Поля, которые можно массово заполнять
     protected $fillable = [
       'user_id',
+      'game_id',
       'name', 
       'class',
       'recommended_level',
       'description_mini',
       'strengths_and_weaknesses',
-      'description', 
-      'skills', 
-      'items', 
       'characteristics', 
-      'is_published',
       'equipment',
+      'skills', 
+      'description', 
       'video',
+      'items', 
+      'is_published',
     ];
 
     // Если нужны кастомные типы данных для полей

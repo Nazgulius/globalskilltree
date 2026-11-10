@@ -42,10 +42,10 @@ Route::middleware('auth')->group(function () {
   // маршруты для билдов
   Route::get('/build/create', [BuildController::class, 'create'])->name('build.create');
   Route::post('/build/save', [BuildController::class, 'store'])->name('build.store');
-  Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
   // Route::delete('/build/{build}/destroy', [BuildController::class, 'destroy'])->name('build.destroy');
 });
 
+Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
 
 // прочее
 Route::view('buildListPage/calcMoY', '/game/calcMoY')->name('calcMoY');

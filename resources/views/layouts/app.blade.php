@@ -77,10 +77,6 @@
 
   <main class="app-main">
     <div class="main-container">
-      @if (session('success'))
-          <div class="alert alert-success">{{ session('success') }}</div>
-      @endif
-              
       @yield('content')
     </div>
   </main>
