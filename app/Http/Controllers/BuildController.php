@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Build;
 use App\Models\Game;
+use App\Models\GameClass;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -88,24 +89,25 @@ class BuildController extends Controller
 
     public function index(Request $request)
     {
-      Log::debug('Filter input', $request->all()); // временно
+      $classFilter = $request->input('class_id');
 
-        $gameId = $request->input('game_id');
-        $skill = $request->input('skill');
-        $levelMin = $request->input('level_min');
+      $builds = Build::with('user')
+        ->when($request->filled('game_id'), fn ($q) => $q->where('game_id', $request->game_id))        
+        ->when($classFilter, fn ($q) => $q->where('class', $classFilter))        
+        ->latest() // то же самое, что orderBy('created_at', 'DESC')
+        ->paginate(10)
+        ->withQueryString(); // сохраняет фильтры в ссылках пагинации
 
-        $query = Build::with('user') // если в шаблоне нужен автор билда
-            ->when($gameId, fn($q) => $q->where('game_id', $gameId))
-            ->when($skill, fn($q) => $q->whereRaw('JSON_CONTAINS(skills, ?)', [$skill]))
-            ->when($levelMin, fn($q) => $q->where('recommended_level', '>=', $levelMin))
-            ->orderBy('created_at', 'DESC');
+      $games = Game::all();
+      $gameClasses = GameClass::all();
 
-        // Пагинация: Laravel сам сделает offset/limit и посчитает страницы
-        $builds = $query->paginate(10);
-
-        $games = Game::all(); // вместо DB::table('games')->get()
-
-        return view('buildListPage', compact('builds', 'games', 'gameId'));
+      return view('buildListPage', [
+          'builds'   => $builds,
+          'games'    => $games,
+          'gameClasses' => $gameClasses,
+          'classFilter' => $classFilter, 
+          'gameId'   => $request->game_id,
+      ]);
     }
 
     public function destroy(Build $build) 

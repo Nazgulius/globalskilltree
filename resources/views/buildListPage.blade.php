@@ -4,16 +4,15 @@
 <div class="build-content">
 <h1 class="servers-title">Выберите билд</h1>
   <div class="description-top">
-    <p>тут будет описание раздела</p>
+    <p>В этом разделе Вы можете выбрать билд для ознакомления. </p>
   </div>
 
   <!-- фильтр билдов -->
   <div class="filter-builds">
-    <p>фильтры для билдов</p>
-    <a href="{{ route('buildListPage') }}" class="btn btn-sm btn-outline-secondary">Сбросить</a>
+    <a href="{{ route('buildListPage') }}" class="filrer-restart filter-builds-elem">Сбросить</a>
 
     <form action="{{ route('buildListPage') }}" method="GET">
-        <select name="game_id" onchange="this.form.submit()">
+        <select name="game_id" onchange="this.form.submit()" class="filter-builds-elem">
             <option value="">Все игры</option>
             @foreach ($games as $g)
                 <option value="{{ $g->id }}" {{ $gameId == $g->id ? 'selected' : '' }}>
@@ -21,137 +20,56 @@
                 </option>
             @endforeach
         </select>
+        <select name="class_id" onchange="this.form.submit()" class="filter-builds-elem">
+            <option value="">Все профессии</option>
+            @foreach ($gameClasses as $c)
+              <option value="{{ $c->name_class }}" @selected($classFilter == $c->name_class)>{{ $c->name_class }}</option>
+            @endforeach
+        </select>
+        
     </form>
   </div>
 
   <!-- список билдов -->
   <div class="class-list">
     @forelse ($builds as $build)
-      <a href="{{ route('build.show', $build) }}">Посмотреть: {{ $build->name }}
-        <div>
-          <h2>{{ $build->name }}</h2>
+      <div class="build">
+        <a href="{{ route('build.show', $build) }}" class="build-a">
+          <div class="build-top">
+            <div class="build-title-block">
+              <h4 class="build-title">Название: {{ $build->name }}</h4>
+              <p class="build-author">
+                <strong>Автор:</strong> {{ $build->user->name }}
+              </p>
               <p><strong>Класс:</strong> {{ $build->class }}</p>
-              <p><strong>Автор:</strong> {{ $build->user->name }}</p>
               <p><strong>Уровень:</strong> {{ $build->recommended_level ?? 'Не указан' }}</p>
-              @if($build->description)
-                  <p><strong>Описание:</strong> {{ $build->description }}</p>
-              @endif              
-        </div>
-      </a>
+              <p class="build-date-update">Последнее обновление {{ $build->updated_at }}</p>
+            </div>
+
+            <div class="build-skills-img">
+              <!-- <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item"> -->
+            </div>
+          </div>
+
+          <div class="build-down">
+            <div class="build-navi">
+              <!-- <button class="build-navi-like">(количество) Нравится</button>
+              <button class="build-navi-share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Baseline Ios Share SVG Icon</title><path fill="currentColor" d="m16 5l-1.42 1.42l-1.59-1.59V16h-1.98V4.83L9.42 6.42L8 5l4-4zm4 5v11c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3a2 2 0 0 1 2 2"></path></svg> Поделиться</button>
+              <button class="build-navi-more">...</button> -->
+            </div>
+      
+            <div class="build-key">
+              <span class="b-k-item">сервер</span>
+              <span class="b-k-item">класс</span>
+              <span class="b-k-item">для чего</span>
+              <span class="b-k-item">сложность</span>
+            </div>
+          </div>
+        </a>
+      </div>
     @empty
         <p>Нет билдов по этому фильтру.</p>
     @endforelse
-
-    <!-- @if ($builds->count())
-      @foreach ($builds as $build)
-      
-     
-      <div class="build-1 build">
-        <div class="build-top">
-          <img src="" alt="" class="img-class-item">
-
-          <div class="build-title-block">
-            <h4 class="build-title">{{ $build->name }}</h4>
-            <div class="b-t-b-blok">
-              <p class="build-author">Автор <a href="#" class="author-build-link">{{ $build->author }}</a></p>
-              <p class="build-date-update">Последнее обновление (дата)</p>
-            </div>
-          </div>
-          
-          <div class="build-skills-img">
-            <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-            <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-            <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-            <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          </div>
-        </div>
-
-        <div class="build-down">
-          <div class="build-navi">
-            <button class="build-navi-like">(количество) Нравится</button>
-            <button class="build-navi-share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Baseline Ios Share SVG Icon</title><path fill="currentColor" d="m16 5l-1.42 1.42l-1.59-1.59V16h-1.98V4.83L9.42 6.42L8 5l4-4zm4 5v11c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3a2 2 0 0 1 2 2"></path></svg> Поделиться</button>
-            <button class="build-navi-more">...</button>
-          </div>
-    
-          <div class="build-key">
-            <span class="b-k-item">сервер</span>
-            <span class="b-k-item">класс</span>
-            <span class="b-k-item">для чего</span>
-            <span class="b-k-item">сложность</span>
-          </div>
-        </div>
-      </div>
-
-       @endforeach
-    @else
-      <p>В базе нет билдов.</p>
-    @endif -->
-    
-
-    <div class="build-2 build">
-      <div class="build-top">
-        <img src="" alt="" class="img-class-item">
-
-        <div class="build-title-block">
-          <h4 class="build-title">Название билда</h4>
-          <p class="build-author">By <a href="#" class="author-build-link">Автор билда</a></p>
-          <p class="build-date-update">Последнее обновление (дата)</p>
-        </div>
-        
-        <div class="build-skills-img">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-          <img src="./img/no_img_skill_info.png" alt="" class="b-s-img-item">
-        </div>
-      </div>
-
-      <div class="build-down">
-        <div class="build-navi">
-          <button class="build-navi-like">(количество) Нравится</button>
-          <button class="build-navi-share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Baseline Ios Share SVG Icon</title><path fill="currentColor" d="m16 5l-1.42 1.42l-1.59-1.59V16h-1.98V4.83L9.42 6.42L8 5l4-4zm4 5v11c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3a2 2 0 0 1 2 2"></path></svg> Поделиться</button>
-          <button class="build-navi-more">...</button>
-        </div>
-  
-        <div class="build-key">
-          <span class="b-k-item">сервер</span>
-          <span class="b-k-item">класс</span>
-          <span class="b-k-item">для чего</span>
-          <span class="b-k-item">сложность</span>
-        </div>
-      </div>
-
-    </div>
-    <div class="build-3 build">
-      <div class="build-top">
-        <img src="" alt="" class="img-class-item">
-
-        <div class="build-title-block">
-          <h4 class="build-title">Название билда</h4>
-          <p class="build-author">By <a href="#" class="author-build-link">Автор билда</a></p>
-          <p class="build-date-update">Последнее обновление (дата)</p>
-        </div>       
-        
-      </div>
-
-      <div class="build-down">
-        <div class="build-navi">
-          <button class="build-navi-like">(количество) Нравится</button>
-          <button class="build-navi-share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Baseline Ios Share SVG Icon</title><path fill="currentColor" d="m16 5l-1.42 1.42l-1.59-1.59V16h-1.98V4.83L9.42 6.42L8 5l4-4zm4 5v11c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3a2 2 0 0 1 2 2"></path></svg> Поделиться</button>
-          <button class="build-navi-more">...</button>
-        </div>
-  
-        <div class="build-key">
-          <span class="b-k-item">сервер</span>
-          <span class="b-k-item">класс</span>
-          <span class="b-k-item">для чего</span>
-          <span class="b-k-item">сложность</span>
-        </div>
-      </div>
-
-    </div>
     
   </div>
 </div>
