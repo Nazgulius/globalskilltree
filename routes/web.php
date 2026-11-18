@@ -30,10 +30,13 @@ Route::view('/createBuild', 'createBuild')->name('createBuild');
 
 Route::get('/createBuild/index', [BuildController::class, 'index'])->name('createBuildIndex');
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);                                                                      
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+// Защищённые маршруты - только не авторизованные 
+Route::middleware('guest')->group(function () {
+  Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+  Route::post('/login', [LoginController::class, 'login']);                                                                      
+  Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+  Route::post('/register', [RegisterController::class, 'register']);
+});
 
 // Защищённые маршруты (только для авторизованных)
 Route::middleware('auth')->group(function () {
