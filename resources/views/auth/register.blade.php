@@ -41,6 +41,13 @@
                             <label for="password_confirmation" class="form-label">Подтвердите пароль</label>
                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                          <input type="checkbox" name="consent" required id="consent">
+                          <label for="consent">
+                              Я даю согласие на обработку моих персональных данных в соответствии с 
+                              <a href="{{ route('privacy') }}" target="_blank">Политикой конфиденциальности</a>.
+                          </label>
+                        </div>
                         <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
                     </form>
                     <div class="mt-3">

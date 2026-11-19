@@ -27,7 +27,6 @@ Route::view('/newGame', 'layouts.newGame', [
 ])->name('newGame');
 
 Route::view('/createBuild', 'createBuild')->name('createBuild');
-
 Route::get('/createBuild/index', [BuildController::class, 'index'])->name('createBuildIndex');
 
 // Защищённые маршруты - только не авторизованные 
@@ -49,6 +48,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/build/{build}', [BuildController::class, 'show'])->name('build.show');
+
+Route::get('/privacy', function () {
+  return view('privacy');
+})->name('privacy');
+
+
 
 // прочее
 Route::view('buildListPage/calcMoY', '/game/calcMoY')->name('calcMoY');
