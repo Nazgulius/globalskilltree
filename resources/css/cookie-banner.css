@@ -1,0 +1,64 @@
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background: #1f1f27;
+    color: #eee;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cookie-banner[hidden] {
+    display: none;
+}
+
+.cookie-banner__text {
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 640px;
+}
+
+.cookie-banner__text a {
+    color: #7aa5ff;
+}
+
+.cookie-banner__category {
+    display: inline-block;
+    padding: 1px 8px;
+    margin: 0 2px;
+    border-radius: 10px;
+    background: #3a3a45;
+    font-size: 12px;
+}
+
+.cookie-banner__actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.cookie-btn {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Важно: кнопки одинаковой заметности — не делай «Отклонить» серой мелочью */
+.cookie-btn--accept {
+    background: #4a7cff;
+    color: #fff;
+}
+
+.cookie-btn--reject {
+    background: transparent;
+    color: #eee;
+    border-color: #6a6a75;
+}
